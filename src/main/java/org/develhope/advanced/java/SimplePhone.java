@@ -34,7 +34,7 @@ public abstract class SimplePhone implements Phone{
         System.out.print("Enter your message: ");
         String message = scanner.nextLine().trim();
         textlLogContacts.add(contactName);
-        textlLogMessages.add(contactName);
+        textlLogMessages.add(message);
     }
 
     public void showCallHistory() {
@@ -58,7 +58,7 @@ public abstract class SimplePhone implements Phone{
 
         System.out.println(this + " is showing text message history");
         for (int i = 0; i < textlLogContacts.size(); i++) {
-            System.out.println((i+1) + ". " + textlLogContacts.get(i));
+            System.out.println((i+1) + ". To: " + textlLogContacts.get(i) + ", Message: " + textlLogMessages.get(i));
         }
     }
 
