@@ -5,4 +5,6 @@ public interface Phone {
     void text();
     void showCallHistory();
     void showTextHistory();
+
+    void printInfo();
 }

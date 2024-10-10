@@ -1,18 +1,25 @@
 package org.develhope.advanced.java;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public abstract class SimplePhone implements Phone{
     Scanner scanner = new Scanner(System.in);
-    List<String> callLogContacts;
-    List<String> textlLogContacts;
-    List<String> textlLogMessages;
+    List<String> callLogContacts = new ArrayList<>();
+    List<String> textlLogContacts = new ArrayList<>();
+    List<String> textlLogMessages = new ArrayList<>();
 
-    public SimplePhone(List<String> callLogContacts, List<String> textlLogContacts, List<String> textlLogMessages) {
-        this.callLogContacts = callLogContacts;
-        this.textlLogContacts = textlLogContacts;
-        this.textlLogMessages = textlLogMessages;
+    private String brand;
+    private String model;
+    private int year;
+    private double price;
+
+    public SimplePhone(String brand, String model, int year, double price) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.price = price;
     }
 
     public void call() {
@@ -36,7 +43,7 @@ public abstract class SimplePhone implements Phone{
             return;
         }
 
-        System.out.println(this.getClass().getSimpleName() + " is showing call history");
+        System.out.println(this + " is showing call history");
         for (int i = 0; i < callLogContacts.size(); i++) {
             System.out.println((i+1) + ". " + callLogContacts.get(i));
         }
@@ -49,10 +56,18 @@ public abstract class SimplePhone implements Phone{
             return;
         }
 
-        System.out.println(this.getClass().getSimpleName() + " is showing text message history");
+        System.out.println(this + " is showing text message history");
         for (int i = 0; i < textlLogContacts.size(); i++) {
-            System.out.println((i+1) + ". " + callLogContacts.get(i));
+            System.out.println((i+1) + ". " + textlLogContacts.get(i));
         }
     }
 
+    public void printInfo() {
+        System.out.println("Brand: " + brand + ", Model: " + model + ", Year: " + year + ", Price: $" + price );
+    }
+
+    @Override
+    public String toString() {
+        return brand + " " + model;
+    }
 }
