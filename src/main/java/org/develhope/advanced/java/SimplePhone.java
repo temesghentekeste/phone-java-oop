@@ -1,5 +1,8 @@
 package org.develhope.advanced.java;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +28,7 @@ public abstract class SimplePhone implements Phone{
     public void call() {
         System.out.print("Who do you want to call? ");
         String contactName = scanner.nextLine().trim();
-        callLogContacts.add(contactName);
+        callLogContacts.add(contactName + " ....was on call at " + getTimeLog());
     }
 
     public void text() {
@@ -34,7 +37,13 @@ public abstract class SimplePhone implements Phone{
         System.out.print("Enter your message: ");
         String message = scanner.nextLine().trim();
         textlLogContacts.add(contactName);
-        textlLogMessages.add(message);
+        textlLogMessages.add(message + " ....text was se at " + getTimeLog());
+    }
+
+
+    public String getTimeLog() {
+        return LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
     public void showCallHistory() {
@@ -45,7 +54,8 @@ public abstract class SimplePhone implements Phone{
 
         System.out.println(this + " is showing call history");
         for (int i = 0; i < callLogContacts.size(); i++) {
-            System.out.println((i+1) + ". " + callLogContacts.get(i));
+            String string = callLogContacts.get(i);
+            System.out.println((i+1) + ". " + string);
         }
 
     }
